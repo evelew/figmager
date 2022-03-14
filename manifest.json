@@ -9,6 +9,26 @@
     {
       "name": "Highlight unexported images",
       "command": "highlight"
+    },
+    {
+      "name": "Remove highlight from images",
+      "command": "remove_highlight"
+    },
+    {
+      "name": "Export unexported images - PNG",
+      "command": "export_all_png"
+    },
+    {
+      "name": "Export unexported images - JPG",
+      "command": "export_all_jpg"
+    },
+    {
+      "name": "Export unexported images - SVG",
+      "command": "export_all_svg"
+    },
+    {
+      "name": "Export unexported images - PDF",
+      "command": "export_all_pdf"
     }
   ]
 }
