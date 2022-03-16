@@ -11,24 +11,29 @@
       "command": "highlight"
     },
     {
-      "name": "Remove highlight from images",
+      "name": "Remove highlight",
       "command": "remove_highlight"
     },
     {
-      "name": "Export unexported images - PNG",
-      "command": "export_all_png"
-    },
-    {
-      "name": "Export unexported images - JPG",
-      "command": "export_all_jpg"
-    },
-    {
-      "name": "Export unexported images - SVG",
-      "command": "export_all_svg"
-    },
-    {
-      "name": "Export unexported images - PDF",
-      "command": "export_all_pdf"
+      "name": "Export all unexported images",
+      "menu": [
+        {
+          "name": "As PNG",
+          "command": "export_all_png"
+        },
+        {
+          "name": "As JPG",
+          "command": "export_all_jpg"
+        },
+        {
+          "name": "As SVG",
+          "command": "export_all_svg"
+        },
+        {
+          "name": "As PDF",
+          "command": "export_all_pdf"
+        }
+      ]
     }
   ]
 }

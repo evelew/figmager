@@ -6,6 +6,10 @@ const getImagesFromLevel = (nodes) => {
     .filter((img) => img.exportSettings.length === 0);
 };
 
+const getHighlighterRects = (nodes) => {
+  return nodes.filter((node) => node.fills && node.fills[0] && node.fills[0].name === 'highlighter-rect');
+};
+
 const runInsideNodes = (nodes) => {
   for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i];
@@ -79,20 +83,14 @@ if (figma.command === 'highlight') {
   for (let i = 0; i < unexportedImages.length; i++) {
     const img = unexportedImages[i];
 
-    img.strokeWeight = 8;
-    img.strokes = [
-      {
-        blendMode: 'NORMAL',
-        color: {
-          r: 1,
-          g: 0,
-          b: 0,
-        },
-        opacity: 1,
-        type: 'SOLID',
-        visible: true,
-      },
-    ];
+    const rect = figma.createRectangle();
+    rect.fills = [{type: 'SOLID', color: {r: 1, g: 0.5, b: 0}}];
+    rect.x = img.x - 10;
+    rect.y = img.y - 10;
+    rect.name = 'highlighter-rect';
+    rect.resize(img.width + 20, img.height + 20);
+
+    img.parent.insertChild(0, rect);
   }
 
   figma.closePlugin();
@@ -101,20 +99,14 @@ if (figma.command === 'highlight') {
 // TODO: como remover apenas a borda que foi colocada pelo plugin?
 // verificar configs, se todas as configurações forem iguais as que o plugin coloca então remove
 if (figma.command === 'remove_highlight') {
-  const nodes = figma.currentPage.children;
-  const images = getImagesFromLevel(nodes);
-  unexportedImages = [...unexportedImages, ...images];
-
-  runInsideNodes(nodes);
-
-  for (let i = 0; i < unexportedImages.length; i++) {
-    const img = unexportedImages[i];
-
-    img.strokeWeight = 0;
-    img.strokes = [];
-  }
-
-  figma.closePlugin();
+  // const nodes = figma.currentPage.children;
+  // const images = getImagesFromLevel(nodes);
+  // unexportedImages = [...unexportedImages, ...images];
+  // runInsideNodes(nodes);
+  // for (let i = 0; i < unexportedImages.length; i++) {
+  //   const img = unexportedImages[i];
+  // }
+  // figma.closePlugin();
 }
 
 if (figma.command === 'export_all_png') {
