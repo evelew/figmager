@@ -96,17 +96,31 @@ if (figma.command === 'highlight') {
   figma.closePlugin();
 }
 
-// TODO: como remover apenas a borda que foi colocada pelo plugin?
-// verificar configs, se todas as configurações forem iguais as que o plugin coloca então remove
 if (figma.command === 'remove_highlight') {
-  // const nodes = figma.currentPage.children;
-  // const images = getImagesFromLevel(nodes);
-  // unexportedImages = [...unexportedImages, ...images];
-  // runInsideNodes(nodes);
-  // for (let i = 0; i < unexportedImages.length; i++) {
-  //   const img = unexportedImages[i];
-  // }
-  // figma.closePlugin();
+  const getRectsFromLevel = (nodes) => nodes.filter((node) => node.name === 'highlighter-rect');
+
+  let allRects = getRectsFromLevel(figma.currentPage.children);
+
+  const getAllRects = (nodes) => {
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i];
+
+      if (node.children && node.children.length) {
+        const imgs = getRectsFromLevel(node.children);
+        allRects = [...allRects, ...imgs];
+
+        getAllRects(node.children);
+      }
+    }
+  };
+
+  getAllRects(figma.currentPage.children);
+
+  for (let i = 0; i < allRects.length; i++) {
+    allRects[i].remove();
+  }
+
+  figma.closePlugin();
 }
 
 if (figma.command === 'export_all_png') {
