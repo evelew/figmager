@@ -1,6 +1,6 @@
 {
-  "name": "Unexported images highlighter",
-  "id": "00000001",
+  "name": "Figmager",
+  "id": "1090733792379662221",
   "api": "1.0.0",
   "main": "dist/code.js",
   "ui": "dist/ui.html",

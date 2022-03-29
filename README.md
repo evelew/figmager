@@ -4,7 +4,7 @@
 
 Export all images with only one command.
 
-[**Page in Figma community**](https://www.figma.com/c/plugin/798588768596541799/Valor)
+[**Page in Figma community**](https://www.figma.com/community/plugin/1090733792379662221)
 
 ### Export all images
 
